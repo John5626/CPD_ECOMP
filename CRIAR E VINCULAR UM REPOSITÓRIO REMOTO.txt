@@ -1,0 +1,53 @@
+*CRIAR E VINCULAR UM REPOSITÓRIO REMOTO DO GITHUB COM UM REPOSITÓRIO LOCAL*
+
+1-Gerar uma chave SSH: Primeiro, você precisa gerar uma chave SSH localmente. Abra o terminal ou prompt de comando e execute o seguinte comando para gerar uma nova chave SSH:
+
+ssh-keygen -t rsa -b 4096 -C "domingos192192@gmail.com"
+
+2- Adicionar a chave ao agente SSH: Em seguida, você precisa adicionar a chave SSH gerada ao agente SSH do seu sistema. Execute o seguinte comando:
+
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_rsa
+
+3- Adicionar a chave SSH ao GitHub: Agora, você precisa adicionar a chave SSH pública ao seu perfil do GitHub. Use o comando abaixo para copiar a chave para a área de transferência:
+
+cat ~/.ssh/id_rsa.pub
+
+Acesse sua conta do GitHub pelo navegador e siga estes passos:
+
+Clique na sua foto de perfil no canto superior direito da página e selecione "Settings" (Configurações).
+Na página "Settings", clique em "SSH and GPG keys" (Chaves SSH e GPG) no menu à esquerda.
+Clique em "New SSH key" (Nova chave SSH).
+Dê um título descritivo à chave (por exemplo, "Chave SSH do Meu Computador") e cole a chave pública na caixa "Key" (Chave).
+Clique em "Add SSH key" (Adicionar chave SSH).
+
+4- Criar um novo repositório remoto no GitHub: Se você ainda não tem um repositório remoto no GitHub, siga estas etapas para criar um novo repositório:
+
+Faça login na sua conta do GitHub.
+Clique no sinal de "+" no canto superior direito e escolha "New repository" (Novo repositório).
+Dê um nome ao seu repositório, selecione as opções desejadas e clique em "Create repository" (Criar repositório).
+
+5- Vincular o repositório local ao repositório remoto: No diretório do seu repositório local, abra o terminal ou prompt de comando e execute os seguintes comandos:
+
+Inicialize o repositório local como um repositório Git:
+
+git init
+
+git remote add origin git@github.com:seu_usuario/nome_do_repositorio.git
+
+git add .
+
+git commit -m "Primeiro commit"
+
+git push -u origin master
+
+
+*ATUALIZAR REPOSITORIO*
+git status
+git add nome_do_arquivo     ou     git add .
+git commit -m "Mensagem de commit"
+git push origin nome_da_branch
+
+
+
+
