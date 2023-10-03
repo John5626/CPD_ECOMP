@@ -1,5 +1,5 @@
 #include <bits/stdc++.h>
-#include "color.h"
+#include "headers/color.h"
 
 using namespace std;
 

@@ -16,16 +16,16 @@ void quicksort(vector<int>& v, int n); //PARTE A
 int main(){
     srand(time(NULL));
 
-    int tam = 50;
+    int tam = 10050;
     vector<int> vet(tam);
 
 
+    preencher(vet, tam, 1, 1000);
     vector<int> copy(tam);
     for(int i = 0; i < tam; i++){
         copy[i] = vet[i];
     }
-
-    preencher(vet, tam, 4, 50);
+/*
 
     exibe(vet, 0, tam, -1);
     
@@ -33,9 +33,10 @@ int main(){
 
     if(ordenado(vet, tam))
         cout << "Vetor Ordenado" << endl;
+*/
 
 //PARTE A
-/*
+
     ofstream qsrt;
     qsrt.open("dados/quicksort.dat");
     if(!qsrt.is_open()){
@@ -55,7 +56,7 @@ int main(){
 
     }
     qsrt.close();
-*/
+
     
 }
 
@@ -109,7 +110,7 @@ void quicksort(vector<int>& v, int n){
         esq = pilha.top(); pilha.pop();
 
         p = ordenacao(v, esq, dir);
-        exibe(v, 0, v.size(), p);
+        //exibe(v, 0, v.size(), p);
 
         if(p - 1 > esq){
             pilha.push(esq);

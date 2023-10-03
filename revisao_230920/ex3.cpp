@@ -1,62 +1,62 @@
 #include <bits/stdc++.h>
 #include <chrono>
-#include "ex2/color.h"
+#include "headers/color.h"
 
-#define N 100000
-#define MIN 0
-#define MAX 100
+#define N 10050
+#define MIN 1
+#define MAX 1000
 #define BREAK 10010
 
 using namespace std;
-using namespace std :: chrono;
+using namespace std::chrono;
 
 //VARIAVEL GLOBAL
 vector<int> pivo_def; //armazena pivos definitivos
 
-
 void troca(int *id1, int *id2);
-int particiona(vector<int>& v, int ini, int fim);
+int particiona(vector<int>& vet, int esq, int dir);
 void quicksort(vector<int>& v, int n, int en); //'en' apenas para exibir ou nao o passo-a-passo
 void preencher(vector<int>& v, int n, int min, int max);
 void exibir(vector<int> v, int n, int p);
 bool ordenado(vector<int> v, int n);
-void reverte(vector<int>& v, vector<int> copy);
+void reverter(vector<int>& vet, vector<int> copy);
 
-int main(int argc, char* argv[]){
+int main(){
     cout << "Informe a execucao requerida:\n(1) Estimar a complexidade\t(2) Execucao do algoritmo  ";
     int op; cin >> op; 
     if(op == 1){
-    
-        vector<int> v;
-        preencher(v, N, MIN, MAX);
+        srand(time(NULL));
 
-        vector<int> copy;
-        for(int i = 0; i < N; i++){
-            copy.push_back(v[i]);
+        int tam = 10050;
+        vector<int> vet(tam);
+
+
+        vector<int> copy(tam);
+        for(int i = 0; i < tam; i++){
+            copy[i] = vet[i];
+        }
+        preencher(vet, tam, 1, 1000);
+
+        ofstream qsrt;
+        qsrt.open("dados/quicksort.dat");
+        if(!qsrt.is_open()){
+            exit(1);
         }
 
-        ofstream quick;
-        quick.open("dados/quicksort.dat");
-        if(!quick.is_open()){
-            exit(0);
-        }
+        for(int i = 10; i < N; i+=500){
 
-        cout << "Calculando...\n";
-        for(int i = 10; i <= N; i += 500){
-            auto ini = high_resolution_clock :: now();
-            quicksort(v, i, 0);
-            auto fim = high_resolution_clock :: now();
-                
+            auto ini = high_resolution_clock::now();
+            quicksort(vet, i, 0);
+            auto fim = high_resolution_clock::now();
+
             duration<double> t = fim - ini;
-            quick << i << " " << duration_cast<microseconds>(t).count() << "\n"; //<< "us\n";
-                
-            if(ordenado(v, i) && i == BREAK){
-                cout << "Ordenacao QUICKSORT concluida com sucesso.\n";
-            }
-            reverte(v, copy); 
-                
+
+            qsrt << i << " " << duration_cast<microseconds>(t).count() << endl;
+            reverter(vet, copy);
+
         }
-        quick.close();
+        qsrt.close();
+
     }
     if(op == 2){
         vector<int> v;
@@ -79,26 +79,24 @@ void troca(int *id1, int *id2){
     *id2 = aux;
 }
 
-int particiona(vector<int>& v, int ini, int fim){
-    int pivo = ini;
-    
-    int pos, atual;
-    pos = atual = pivo + 1;
-
-    while(atual <= fim){
-        if(v[atual] < v[pivo]){
-            troca(&v[atual], &v[pos]);
+int particiona(vector<int>& vet, int esq, int dir){
+    int p, pos, atual;
+    p = esq;
+    pos = atual = p + 1;
+    while(atual <= dir){
+        if(vet[atual] < vet[p]){
+            troca(&vet[atual], &vet[pos]);
             pos++;
         }
         atual++;
     }
 
-    
-    troca(&v[pivo], &v[pos-1]);
-    pivo = pos - 1;
-    
-    pivo_def.push_back(pivo);
-    return pivo;
+    troca(&vet[p], &vet[pos-1]);
+    p = pos-1;
+
+    pivo_def.push_back(p); //Adicionar posição definitiva
+
+    return p;
 }
 
 void quicksort(vector<int>& v, int n, int en){
@@ -164,8 +162,8 @@ bool ordenado(vector<int> v, int n){
     return true;
 }
 
-void reverte(vector<int>& v, vector<int> copy){
-    for(int i = 0; i < copy.size(); i++){
-        v[i] = copy[i];
+void reverter(vector<int>& vet, vector<int> copy){
+    for(int i = 0; i < vet.size(); i++){
+        vet[i] = copy[i];
     }
 }
