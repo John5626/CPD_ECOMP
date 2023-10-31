@@ -2,42 +2,49 @@
 
 using namespace std;
 
-void counting_sort(vector<int>& v);
+void counting_sort(string& v);
 int ordenado(string s);
 
 int main(){
     string s;
     cin >> s;
 
+    counting_sort(s);
+
+    cout << endl;
+    cout << "Ordenado: "; 
     if(ordenado(s))
-        cout << "String Ordenada." << endl;
-    else cout << "String NAO Ordenada." << endl;
+        cout << "sim." << endl;
+    else cout << "nao." << endl;
+    cout << s << endl;
 }
 
-void counting_sort(string s){
-    auto max = *max_element(s.begin(), s.end());
-    int maior = max;
-    /*
-    vector<int> aux(maior+1, 0);
+void counting_sort(string& s){
+    auto max = max_element(s.begin(), s.end());
     
-    // vetor de frequências: aux
-    for(int i = 0; i < vet.size(); i++)
-        aux[vet[i]]++;
+    int maior = *max;
 
-    // vetor de frequências acumuladas: aux
+    vector<int> aux(maior+1, 0);
+
+  
+    for(int i = 0; i < s.size(); i++)
+       aux[s[i]]++;
+
+   
     for(int i = 1; i < aux.size(); i++)
         aux[i] += aux[i-1];
 
-    vector<int> temp(vet.size(), 0);
-    for(int i = vet.size()-1; i >= 0; i--) {
-        temp[aux[vet[i]] - 1] = vet[i];
-        aux[vet[i]]--;
+    string temp(s.size(), 0);
+
+    for(int i = s.size()-1; i >= 0; i--) {
+        temp[aux[s[i]] - 1] = s[i];
+        aux[s[i]]--;
     }
 
-    for(int i = 0; i < vet.size(); i++)
-        vet[i] = temp[i];
+    for(int i = 0; i < s.size(); i++)
+        s[i] = temp[i];
+    
 }
-    */
 
 int ordenado(string s){
     for(int i = 1; i < s.size(); i++){
