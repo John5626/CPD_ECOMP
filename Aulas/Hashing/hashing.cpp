@@ -25,7 +25,7 @@ int main(){
     cout << t['A'][1] << endl;
     */
 
-    srand(time(NULL));
+    srand(time(NULL)); 
 
     exibir(tab);
 
@@ -37,10 +37,7 @@ int main(){
     cout << buscar(31) << endl;
     remover(31);
     exibir(tab);
-    
-
-
-    
+       
 }
 
 void exibir(vector<int> v){

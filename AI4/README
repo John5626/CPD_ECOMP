@@ -1,0 +1,13 @@
+*****************************************************************
+*   *   *   *   *   JOAO VICTOR SOUZA -  ECOMP  *   *   *   *   *
+* Compilações:                                                  *
+*              g++ header_files/avl.cpp ex1.cpp -o ex1          *
+*              g++ header_files/avl.cpp ex2.cpp -o ex2          *
+*              g++ header_files/avl.cpp ex3.cpp -o ex3          *
+*              g++ header_files/*.cpp ex4.cpp -o ex4            *
+* Execuções:                                                    *
+*              .\ex1.cpp     //  ./ex1.out                      *
+*              .\ex2.cpp    //   ./ex2.out                      *
+*              .\ex3.cpp   //    ./ex3.out                      *
+*              .\ex4.cpp   //    ./ex4.out                      *
+*****************************************************************
